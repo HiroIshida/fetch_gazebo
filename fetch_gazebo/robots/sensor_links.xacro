@@ -9,7 +9,7 @@
           <box size="0.060 0.030 0.045"/>
         </geometry>
         <material name="">
-          <color rgba="0 0.500 0 1"/>
+          <color rgba="0 0.500 0 0.1"/>
         </material>
       </visual>
       <collision>
@@ -45,7 +45,18 @@
   <xacro:macro name="vcnl4040" params="l_r frame sensor_num rpy xyz" >
     <xacro:arg name="sensor_name" default="proximity_sensor_tf/${l_r}/${frame}/${sensor_num}" />
     <!-- Define sensor link -->
-    <link name="proximity_sensor_tf/${l_r}/${frame}/${sensor_num}" />
+    <link name="proximity_sensor_tf/${l_r}/${frame}/${sensor_num}">
+        <visual>
+          <origin rpy="0 0 0" xyz="0.01 0.01 0"/>
+          <geometry>
+            <box size="0.005 0.005 0.005"/>
+          </geometry>
+          <material name="">
+            <color rgba="1.0 0 0 1"/>
+          </material>
+        </visual>
+    </link>
+
     <joint name="proximity_sensor_joint/${l_r}/${frame}/${sensor_num}" type="fixed">
       <parent link="gripper_link"/>
       <child link="proximity_sensor_tf/${l_r}/${frame}/${sensor_num}"/>
